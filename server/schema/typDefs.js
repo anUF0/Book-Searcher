@@ -11,7 +11,7 @@ typw User{
 
 type Book 
     {
-    bookId: ID
+    bookId: ID!
     authors: [String]
     description: String!
     image: String
@@ -34,3 +34,5 @@ type Book
         removeBook: {bookId: ID!}: User
     }
 `;
+
+module.exports = typeDefs;

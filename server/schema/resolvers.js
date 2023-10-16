@@ -3,17 +3,15 @@ const { signToken, AuthenitcationError } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    me: async (_, { user }) => {
-      const foundUser = await User.findOne({
-        $or: [
-          { _id: user ? user._id : params.id },
-          { username: params.username },
-        ],
-      });
-      if (!foundUser) {
-        throw AuthenitcationError;
+    me: async (_, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id })
+          .select('-__v -password')
+          .populate('books');
+
+        return userData;
       }
-      res.json(foundUser);
+      throw AuthenitcationError;
     },
   },
 
@@ -43,8 +41,31 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    saveBook: async (_, { book }) => {},
-    removeBook: async (_, { user }) => {},
+    saveBook: async (_, { bookData }, context) => {
+      if (!context.user) {
+        throw AuthenitcationError;
+      }
+
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: context.user_id },
+        { $addToSet: { savedBooks: bookData } },
+        { new: true }
+      ).populate('books');
+
+      return updatedUser;
+    },
+    removeBook: async (_, { bookId }, context) => {
+      if (!context.user) {
+        throw AuthenitcationError;
+      }
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: context.user_id },
+        { $pull: { savedBooks: bookId } },
+        { new: true }
+      ).populate('books');
+
+      return updatedUser;
+    },
   },
 };
 
