@@ -25,8 +25,8 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    login: async (_, { $or: [username, email], password }) => {
-      const user = await User.findOne({ $or: [username, email] });
+    login: async (_, { email, password }) => {
+      const user = await User.findOne({ email });
 
       if (!user) {
         throw AuthenitcationError;
