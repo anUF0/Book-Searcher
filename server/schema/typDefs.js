@@ -30,8 +30,8 @@ type Book
     type Mutation{
         addUser(username: String!, email: String!, password: String!): Auth
         login({$or: username: String! ,email: String!}, password: String!): Auth
-        saveBook: {bookId: ID!, authors: String, description: String!, image: String, link: String, title: String!}: User
-        removeBook: {bookId: ID!}: User
+        saveBook( {bookId: ID!, authors: String, description: String!, image: String, link: String, title: String!}): User
+        removeBook({bookId: ID!}): User
     }
 `;
 
