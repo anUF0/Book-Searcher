@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Container, Card, Button, Row, Col } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
@@ -21,7 +20,7 @@ const SavedBooks = () => {
     }
 
     try {
-      const { data } = await deleteBook({ variables: { bookId } });
+      const { data } = await removeBook({ variables: { bookId } });
       removeBookId(bookId);
     } catch (err) {
       console.error(err);

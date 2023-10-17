@@ -41,14 +41,14 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    saveBook: async (_, args, context) => {
+    saveBook: async (_, { bookData }, context) => {
       if (!context.user) {
         throw AuthenitcationError;
       }
 
       const updatedUser = await User.findOneAndUpdate(
-        { _id: context.user_id },
-        { $addToSet: { savedBooks: args } },
+        { _id: context.user._id },
+        { $addToSet: { savedBooks: { book: bookData } } },
         { new: true }
       ).populate('books');
 
