@@ -20,6 +20,7 @@ NOTE: This app is currently broken and cannot load the 'saved books' page.
 ## Link
 
 https://pacific-cove-79017-5449156eb4f6.herokuapp.com/
+NOTE: This link currently does not work
 
 ## Usage
 
