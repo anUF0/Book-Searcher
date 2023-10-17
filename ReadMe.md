@@ -7,14 +7,19 @@ This a search engine that allows one to look for books and add them to a persona
 ## Table of Contents
 
 - [Installation](#installation)
+- [Link](#link)
 - [Usage](#usage)
 - [Contributions](#contribution)
 - [Questions](#questions)
 
 ## Installation
 
-This project can be run in the browser or directly downloaded run locally. The command'npm run install' will install all relevant dependencies.
+This project can be run in the browser or directly downloaded run locally. The command'npm run install' will install all relevant dependencies. It is also available online at the link below
 NOTE: This app is currently broken and cannot load the 'saved books' page.
+
+## Link
+
+https://pacific-cove-79017-5449156eb4f6.herokuapp.com/
 
 ## Usage
 
